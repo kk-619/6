@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax Form</title>
+</head>
+
+<body>
+    <script src="script.js"></script>
+    <form id="LoginForm" onsubmit="return false" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #cccccc; padding: 20px; border: 1px solid #ccc; border-radius: 5px; width: 400px;">
+        <h1 style="text-align: center; margin-bottom: 20px;">Login Form</h1>
+        <div class="FormRow" style="display: flex; align-items: center; margin-bottom: 10px;">
+            <label for="Email" style="margin-right: 10px;">Email:</label>
+            <input type="email" size="30" id="Email" name="Email" style="flex: 1; padding: 5px; border-radius: 3px; border: 1px solid #ccc;">
+        </div>
+        <div class="FormRow" style="display: flex; align-items: center; margin-bottom: 10px;">
+            <label for="Username" style="margin-right: 10px;">Username:</label>
+            <input type="text" size="15" id="Username" name="Username" style="flex: 1; padding: 5px; border-radius: 3px; border: 1px solid #ccc;">
+        </div>
+        <div class="FormRow" style="display: flex; align-items: center; margin-bottom: 10px;">
+            <label for="Password" style="margin-right: 10px;">Password:</label>
+            <input type="password" size="15" id="Password" name="Password" style="flex: 1; padding: 5px; border-radius: 3px; border: 1px solid #ccc;">
+        </div>
+        <div class="FormRow" id="LoginButtonDiv" style="display: flex; justify-content: center; margin-top: 20px;">
+            <input type="submit" value="Login" style="background-color: #107425; color: white; padding: 10px; border: none; border-radius: 3px; cursor: pointer;">
+        </div>
+        <div id="BadLogin" style="display: none; margin-top: 20px;">
+            <p style="color: red;">The login information you entered does not
+                match an account in our records. Please
+                try again.</p>
+        </div>
+        <div id="EnteredData"></div>
+    </form>
+    <div id="LoggedIn"></div>
+    <script>
+        function loginResults(responseText, form) {
+            var loggedIn = document.getElementById("LoggedIn");
+            var badLogin = document.getElementById("BadLogin");
+            if (responseText.indexOf("failed") == -1) {
+                loggedIn.innerHTML = "Logged in as " + responseText;
+                loggedIn.style.display = "block";
+                form.style.display = "none";
+            } else {
+                badLogin.style.display = "block";
+                form.Username.select();
+                form.Username.className = "Highlighted";
+                setTimeout(function () {
+                    badLogin.style.display = 'none';
+                }, 3000);
+            }
+        }
+    </script>
+</body>
+
+</html
