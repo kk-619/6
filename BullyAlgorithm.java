@@ -109,3 +109,10 @@ public class BullyAlgorithm {
         } while (choice != 4);
     }
 }
+/*
+*javac *.java
+*Terminal1:
+*java BullyAlgorithm
+*Terminal2:
+*java RingAlgorithm
+*/
